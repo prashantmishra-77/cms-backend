@@ -18,7 +18,11 @@ const __dirname  = path.dirname(__filename)
 
 // Allow Vue frontend to make requests
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://cms-frontend-zeta.vercel.app',
+    process.env.FRONTEND_URL,
+  ].filter(Boolean),
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }))
